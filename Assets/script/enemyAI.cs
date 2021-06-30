@@ -26,6 +26,7 @@ public class enemyAI : MonoBehaviour
     public Animator ani;
     private NavMeshAgent nav;
     int i;
+    private bool tmp = false;
     private void Awake() {
         state=State.running;
     }
@@ -73,8 +74,6 @@ public class enemyAI : MonoBehaviour
                 isHit();
                 break;
             case State.killing:
-                ani.SetBool("isrunning",false);
-                ani.SetBool("isKilling",true);
                 killing();
                 break;
             case State.picking:
@@ -137,7 +136,7 @@ public class enemyAI : MonoBehaviour
                         
                         state = State.shortcut;
                         destination = giaodiem;
-                        dir = (giaodiem - thisbody.transform.position)/Vector3.Distance(giaodiem,thisbody.transform.position);
+                        //dir = (giaodiem - thisbody.transform.position)/Vector3.Distance(giaodiem,thisbody.transform.position);
                         return 1;
                     }
             }
@@ -160,7 +159,9 @@ public class enemyAI : MonoBehaviour
                                     float rotateAngle= Vector3.SignedAngle(direct, Vector3.forward, Vector3.down);
                                     thisbody.transform.eulerAngles  = new Vector3(0,rotateAngle,0);
                                     nav.destination=target.transform.position;
-                                    nav.stoppingDistance=3;
+                                    nav.stoppingDistance=thisbody.fov.viewRadius-2;
+                                    state=State.killing;
+                                    break;
                                 }
                     }
                 }
@@ -183,12 +184,21 @@ public class enemyAI : MonoBehaviour
     }
     public void killing(){
         //nav.destination = thisbody.transform.position;
-        nav.enabled=false;
+        
+        if(nav.enabled)
+            if(nav.remainingDistance<thisbody.fov.viewRadius){
+                nav.enabled=false;
         //thisbody.kill();
-        if(!thisbody.isKilling){
+                thisbody.kill2();
+                ani.SetBool("isrunning",false);
+                ani.SetBool("isKilling",true);
+                
+                tmp=true;
+            }
+        if(tmp && (!thisbody.isKilling) ){
             nav.enabled=true;
-            thisbody.isKilling = false;
             state=lastState;
+            tmp = false;
         }
     }
     public void picking(){
@@ -231,7 +241,7 @@ public class enemyAI : MonoBehaviour
     public void shortcut(){
 
         nav.enabled=false;
-        thisbody.move(dir);
+        thisbody.move(destination);
         Debug.DrawLine(transform.position, destination);
         //Debug.Log(Vector3.Distance(destination,thisbody.transform.position));
         if(Vector3.Distance(destination,thisbody.transform.position)<2f){

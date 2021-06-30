@@ -8,10 +8,10 @@ public class water2 : MonoBehaviour
     // Start is called before the first frame update
         void Update()
     {
-        Vector3 direction = new Vector3(0,-9999,0);
-        Debug.DrawLine(transform.position+new Vector3(0,2,0),direction);
+        Vector3 direction = new Vector3(0,-1,0);
+        Debug.DrawRay(transform.position,direction);
         RaycastHit hit;
-        if (Physics.Raycast(transform.position+new Vector3(0,6,0),direction, out hit, 10399990)){
+        if (Physics.Raycast(transform.position,direction, out hit, Mathf.Infinity)){
             if(hit.transform.gameObject.tag=="water"){
                 thisp.onWater=true;
             } else{

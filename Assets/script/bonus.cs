@@ -11,6 +11,7 @@ public class bonus : MonoBehaviour
     public int rate;
      private void Start() {
         text.text="X"+rate;
+        scr = GameObject.FindGameObjectWithTag("Player").GetComponent<score>();
     }
        void OnTriggerEnter(Collider other)
     {

@@ -15,7 +15,7 @@ public class player : MonoBehaviour
     public GameObject brick,dat,gach;
     [Header ("Other")]
     public float timeGetHit;
-    public float oldspeed2,cooldown,RemainTime,mapYPos=-4.4f;
+    public float oldspeed2,cooldown,RemainTime,mapYPos;
     public Vector3 lastBridgePos,stickPos;
     public GameController gameController;
     public JoystickPlayerExample pmove; 
@@ -23,6 +23,10 @@ public class player : MonoBehaviour
     {
         oldspeed2=pmove.speed;
         brickCount=brickDefault;
+        mapYPos=this.transform.position.y;
+        brick.transform.localScale += new Vector3(0f, .023f*brickCount*0.71f, 0f);
+            brick.transform.localPosition  = new Vector3(stickPos.x-0.023f*brickCount*0.355f, stickPos.y, stickPos.z);
+            fov.viewRadius=brickCount * 0.71f + 5;
     }
 
     // Update is called once per frame
@@ -42,7 +46,7 @@ public class player : MonoBehaviour
                     placeBridge();
                     //transform.position+=new Vector3(0,1f,0);
                     onWater=false;
-                }else if(brickCount==2){
+                }else if(brickCount<3){
                     //nhay them 1 doan ngan, neu cham duong thi song ko thì thua
                         Vector3 direction = transform.forward;
                         direction+=new Vector3(0,-0.3f,0);
@@ -86,7 +90,7 @@ public class player : MonoBehaviour
             brickCount=2;
             brick.transform.localScale = new Vector3(0.0023f,0.023f,0.0023f);
             brick.transform.localPosition  = new Vector3(-0.009f, stickPos.y, stickPos.z);
-            Debug.Log("after"+brick.transform.position);
+            //Debug.Log("after"+brick.transform.position);
             return;
         }else{
         stickPos=brick.transform.localPosition;
@@ -103,7 +107,7 @@ public class player : MonoBehaviour
             lastBridgePos.y=mapYPos;
             float rotateAngle= Vector3.SignedAngle(transform.forward, Vector3.forward, Vector3.down);
             Instantiate (dat,lastBridgePos, Quaternion.Euler(new Vector3(0, rotateAngle, 0)));
-
+            this.transform.position=lastBridgePos;
         
     }
     public virtual void kill(){

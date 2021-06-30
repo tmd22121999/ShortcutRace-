@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 7207035486554735322}
   - component: {fileID: 1902883920}
   - component: {fileID: 447028822766677817}
+  - component: {fileID: 6548769044744791538}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -206,20 +207,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickCount: 2
+  brickDefault: 2
   onWater: 0
   isHit: 0
   canKill: 1
   isKilling: 0
   passGoal: 0
+  fov: {fileID: 7207035486926974647}
+  brick: {fileID: 7207035486176050514}
+  dat: {fileID: 53677339194358061, guid: 6b7c71444d8fa9f479a0612cff531969, type: 3}
+  gach: {fileID: 8337748071275967104, guid: 73b84b8e179924d4cb2f478c14906ad5, type: 3}
   timeGetHit: 1.02
   oldspeed2: 0
   cooldown: 3
   RemainTime: 0
   mapYPos: -4.4
-  fov: {fileID: 7207035486926974647}
-  brick: {fileID: 7207035486176050514}
-  dat: {fileID: 53677339194358061, guid: 6b7c71444d8fa9f479a0612cff531969, type: 3}
-  gach: {fileID: 8337748071275967104, guid: 73b84b8e179924d4cb2f478c14906ad5, type: 3}
   lastBridgePos: {x: 0, y: 0, z: 0}
   stickPos: {x: 0, y: 0, z: 0}
   gameController: {fileID: 0}
@@ -272,6 +274,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9718592, y: 2.9306371, z: 0.9131378}
   m_Center: {x: 0.0033765258, y: 1.492373, z: 0.118908264}
+--- !u!114 &6548769044744791538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207035486554735321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 296ab97aea4dca644824426e535b368e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreText: {fileID: 0}
+  scorePoint: 0
+  finalPoint: 0
 --- !u!1 &7207035486926974646
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +396,6 @@ MonoBehaviour:
   edgeDstThreshold: 0
   maskCutawayDst: 0.1
   viewMeshFilter: {fileID: 7207035486926974641}
-  viewMeshCollider: {fileID: 0}
 --- !u!114 &7207035486926974636
 MonoBehaviour:
   m_ObjectHideFlags: 0
