@@ -90,12 +90,13 @@ public class player : MonoBehaviour
             brickCount=2;
             brick.transform.localScale = new Vector3(0.0023f,0.023f,0.0023f);
             brick.transform.localPosition  = new Vector3(-0.009f, stickPos.y, stickPos.z);
+             fov.viewRadius=brickCount * 0.71f + 5;
             //Debug.Log("after"+brick.transform.position);
             return;
         }else{
         stickPos=brick.transform.localPosition;
-            brick.transform.localScale += new Vector3(0f, .023f*i*0.71f, 0f);
-            brick.transform.localPosition  = new Vector3(stickPos.x-0.023f*i*0.355f, stickPos.y, stickPos.z);
+            brick.transform.localScale += new Vector3(0f, .0123f*i*0.71f, 0f);
+            brick.transform.localPosition  = new Vector3(stickPos.x-0.0123f*i*0.355f, stickPos.y, stickPos.z);
             fov.viewRadius=brickCount * 0.71f + 5;
         //else if(brickCount<0.1f)
             //brick.transform.localScale = new Vector3(0,0,0);
@@ -128,7 +129,9 @@ public class player : MonoBehaviour
         }    
     }
     public virtual void dead(){
-        gameController.GameOver();        
+        int rank = GameObject.FindWithTag("goal").GetComponent<goal>().rank;
+        float score = gameObject.GetComponent<score>().finalPoint;
+        gameController.GameOver(rank,score);        
     }
     public virtual IEnumerator  ishit(){
         

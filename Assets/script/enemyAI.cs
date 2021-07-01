@@ -56,7 +56,7 @@ public class enemyAI : MonoBehaviour
             state=State.isHit;
         }
         
-        Debug.Log(state);
+        //Debug.Log(state);
         
         switch(state){
             default:
@@ -147,7 +147,7 @@ public class enemyAI : MonoBehaviour
                 Collider[] targetInside = Physics.OverlapSphere (transform.position, 8);
                 if(targetInside.Length>0){
                     foreach(var target in targetInside){//random
-                        if((target.gameObject.tag=="brick") && rand<prority[1]){
+                        if(target.gameObject.tag=="brick" && (rand<prority[1] || Vector3.Distance(transform.position,target.transform.position)<2 )){
                             nav.destination=target.transform.position;
                             state = State.picking;
                             Debug.Log("nhat do");

@@ -27,14 +27,14 @@ public class goal : MonoBehaviour
     }
        void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag=="Player"){
+        if((other.gameObject.tag=="Player") && !other.gameObject.GetComponent<player>().passGoal){
             rank++;
             other.gameObject.GetComponent<player>().passGoal=true;
             gameController.activeBonus();
             foreach(var x in another){
                 Destroy(x);
             }
-        }else if(other.gameObject.tag=="other"){
+        }else if(other.gameObject.tag=="other" && !other.gameObject.GetComponent<player>().passGoal){
             other.gameObject.GetComponent<player>().passGoal=true;
             rank++;
             Destroy(other.gameObject);
