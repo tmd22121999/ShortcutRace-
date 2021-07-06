@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class brick : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    public player thisbody;
+    //public player thisbody;
 
     void OnTriggerEnter(Collider other)
     {
-        if((!thisbody.isKilling) && (!thisbody.isHit))
-            if(other.tag=="brick"){
-                //player player=this.GetComponent<player>();
+        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("other")){
+            player thisbody=other.GetComponent<player>();
+            if((!thisbody.isKilling) && (!thisbody.isHit)){
                 thisbody.changeBrick(1);
-                Destroy(other.gameObject);
-                //other.gameObject.SetActive(false);
+                Destroy(this.gameObject);
+                //this.gameObject.SetActive(false);
             }
+        }
     }
 }

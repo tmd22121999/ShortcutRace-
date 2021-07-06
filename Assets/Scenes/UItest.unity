@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1666876004}
   m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -150,13 +150,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c906e50af7a9ad42854915b795a7222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverText: {fileID: 0}
   map: {fileID: 1826480644}
   menu: {fileID: 321393400}
   cur: {fileID: 321393400}
   pre: {fileID: 0}
   bonus: {fileID: 0}
   State: 0
+  end: {fileID: 0}
+  gameOverText: {fileID: 0}
+  rankText: {fileID: 0}
+  scoreText: {fileID: 0}
 --- !u!4 &60877332
 Transform:
   m_ObjectHideFlags: 0

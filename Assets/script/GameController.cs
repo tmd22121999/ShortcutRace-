@@ -9,17 +9,25 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public TextMeshProUGUI gameOverText;
-    public GameObject map, menu, end, cur, pre,bonus;
+    
+    public GameObject map, menu, cur, pre,bonus;
     public int State; 
-    private void Start() {
-    }
+    [Header ("End game UI")]
+     public GameObject end;
+    public TextMeshProUGUI gameOverText,rankText,scoreText;
+    
     public void GameOver(int rank, float score) {
         //gameOverText.gameObject.SetActive(true); 
         cur = end;
         cur.SetActive(true); 
-        cur.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text += rank;
-        cur.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text += score;
+        if(rank>0){
+            rankText.text += rank;
+            scoreText.text += score;
+        }else{
+            rankText.text = "";
+            scoreText.text = "";
+            gameOverText.gameObject.SetActive(true);
+        }
         Time.timeScale = 0;
     }
     public void enterMap(){
@@ -45,5 +53,8 @@ public class GameController : MonoBehaviour
     }
     public void activeBonus(){
         bonus.SetActive(true);  
+    }
+    public void returnMap(){
+         SceneManager.LoadScene("UItest");
     }
 }

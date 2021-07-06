@@ -15,38 +15,43 @@ public class player : MonoBehaviour
     public GameObject brick,dat,gach;
     [Header ("Other")]
     public float timeGetHit;
-    public float oldspeed2,cooldown,RemainTime,mapYPos;
+    public float cooldown;
     public Vector3 lastBridgePos,stickPos;
     public GameController gameController;
     public JoystickPlayerExample pmove; 
+    int layerMask = 1 << 9;
+     [HideInInspector]
+     public float oldspeed2,RemainTime,mapYPos;
     void Start()
     {
         oldspeed2=pmove.speed;
-        brickCount=brickDefault;
-        mapYPos=this.transform.position.y;
+        brickCount=brickDefault; // số gạch mặc định
+        mapYPos=this.transform.position.y - 0.055f;
         brick.transform.localScale += new Vector3(0f, .023f*brickCount*0.71f, 0f);
-            brick.transform.localPosition  = new Vector3(stickPos.x-0.023f*brickCount*0.355f, stickPos.y, stickPos.z);
-            fov.viewRadius=brickCount * 0.71f + 5;
+        brick.transform.localPosition  = new Vector3(stickPos.x-0.023f*brickCount*0.355f, stickPos.y, stickPos.z);
+        fov.viewRadius=brickCount * 0.71f + 5; 
+        this.GetComponent<Rigidbody>().sleepThreshold = 0.0f;//rigidbody hoạt động khi ko sử dụng
     }
 
     // Update is called once per frame
 
     void FixedUpdate()
     {
-        
-
-
         if(isHit){
             StartCoroutine("ishit");
         }else{
             
             if(onWater==true){
-                if(brickCount>2){
-                    changeBrick(-1);
-                    placeBridge();
-                    //transform.position+=new Vector3(0,1f,0);
-                    onWater=false;
-                }else if(brickCount<3){
+                if(Physics.BoxCast(transform.position+new Vector3(0,3,0), dat.transform.lossyScale/1.5f, new Vector3(0,-1,0), out RaycastHit hit2, transform.rotation, 4,~layerMask))
+                    if(hit2.transform.gameObject.CompareTag("water")){
+                        if(brickCount>2){
+                            //đặt gạch để đi trên nước
+                            changeBrick(-1);
+                            placeBridge();
+                            //transform.position+=new Vector3(0,1f,0);
+                            onWater=false;
+                     }
+                    else if(brickCount<3){
                     //nhay them 1 doan ngan, neu cham duong thi song ko thì thua
                         Vector3 direction = transform.forward;
                         direction+=new Vector3(0,-0.3f,0);
@@ -54,10 +59,10 @@ public class player : MonoBehaviour
                         Debug.DrawRay(transform.position+new Vector3(0,1,0),direction);
                         RaycastHit hit;
                         if (Physics.Raycast(transform.position+new Vector3(0,1,0),direction, out hit, 130)){
-                            if((hit.transform.gameObject.tag=="ground") || (hit.transform.gameObject.tag=="bonus")){
+                            if( (hit.transform.gameObject.CompareTag("ground")) || (hit.transform.gameObject.CompareTag("bonus"))){
                                 onWater=false;
                                 transform.position=hit.point;
-                            }else if(hit.transform.gameObject.tag=="water"){
+                            }else if(hit.transform.gameObject.CompareTag("water") ){
                                 
                                 Debug.Log("endgame");
                                 dead();
@@ -66,7 +71,7 @@ public class player : MonoBehaviour
                             Debug.Log("endgame");
                             dead();
                         }
-                    
+                    }
                 }
             }
                 //destroy
@@ -104,19 +109,20 @@ public class player : MonoBehaviour
     }
     //dat cau
     public void placeBridge(){
-            lastBridgePos=transform.position;
-            lastBridgePos.y=mapYPos;
-            float rotateAngle= Vector3.SignedAngle(transform.forward, Vector3.forward, Vector3.down);
-            Instantiate (dat,lastBridgePos, Quaternion.Euler(new Vector3(0, rotateAngle, 0)));
-            this.transform.position=lastBridgePos;
-        
+
+        lastBridgePos=transform.position;
+        lastBridgePos.y=mapYPos;// - 0.055f;
+        float rotateAngle= Vector3.SignedAngle(transform.forward, Vector3.forward, Vector3.down);
+        Instantiate (dat,lastBridgePos, Quaternion.Euler(new Vector3(0, rotateAngle, 0)));
+        this.transform.position=lastBridgePos + new Vector3(0,0.055f,0); ;
+    
     }
     public virtual void kill(){
         //if( (pmove.direction.magnitude<0.1f) ){
         if(!Input.GetMouseButton(0)){
             foreach(var x in fov.visibleTargets)
             if(x!=null) {
-                if((x.tag=="other") && (!x.GetComponent<player>().isHit) && (canKill) && (x.GetComponent<player>().brickCount>2) ){
+                if((x.gameObject.CompareTag("other")) && (!x.GetComponent<player>().isHit) && (canKill) && (x.GetComponent<player>().brickCount>2) ){
                     
                     x.gameObject.GetComponent<player>().isHit=true;
                     isKilling=true;
@@ -129,9 +135,13 @@ public class player : MonoBehaviour
         }    
     }
     public virtual void dead(){
-        int rank = GameObject.FindWithTag("goal").GetComponent<goal>().rank;
-        float score = gameObject.GetComponent<score>().finalPoint;
-        gameController.GameOver(rank,score);        
+        if(passGoal){
+            int rank = GameObject.FindWithTag("goal").GetComponent<goal>().rank;
+            float score = gameObject.GetComponent<score>().finalPoint;
+            gameController.GameOver(rank,score);
+        }else{
+            gameController.GameOver(0,0);
+        }
     }
     public virtual IEnumerator  ishit(){
         

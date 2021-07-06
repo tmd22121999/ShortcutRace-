@@ -50,7 +50,6 @@
      <Compile Include="Assets\PathCreator\Examples\Scripts\PathSpawner.cs" />
      <Compile Include="Assets\PathCreator\Examples\Scripts\RoadMeshCreator.cs" />
      <Compile Include="Assets\UI\script\dontDestroy.cs" />
-     <Compile Include="Assets\script\DrawMap.cs" />
      <Compile Include="Assets\script\GameController.cs" />
      <Compile Include="Assets\script\bonus.cs" />
      <Compile Include="Assets\script\brick.cs" />
@@ -60,19 +59,21 @@
      <Compile Include="Assets\script\fov2.cs" />
      <Compile Include="Assets\script\genMap.cs" />
      <Compile Include="Assets\script\goal.cs" />
-     <Compile Include="Assets\script\obstacle.cs" />
      <Compile Include="Assets\script\player.cs" />
      <Compile Include="Assets\script\score.cs" />
      <Compile Include="Assets\script\special.cs" />
      <Compile Include="Assets\script\unused\BezierCurve.cs" />
+     <Compile Include="Assets\script\unused\DrawMap.cs" />
      <Compile Include="Assets\script\unused\FOVMeshCreator.cs" />
      <Compile Include="Assets\script\unused\NewBehaviourScript.cs" />
      <Compile Include="Assets\script\unused\destroy.cs" />
      <Compile Include="Assets\script\unused\drawline.cs" />
      <Compile Include="Assets\script\unused\mesh.cs" />
+     <Compile Include="Assets\script\unused\obstacle.cs" />
      <Compile Include="Assets\script\unused\pathfinding.cs" />
-     <Compile Include="Assets\script\unused\water2.cs" />
-     <Compile Include="Assets\script\water.cs" />
+     <Compile Include="Assets\script\unused\randColor.cs" />
+     <Compile Include="Assets\script\unused\water.cs" />
+     <Compile Include="Assets\script\water2.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -626,8 +627,14 @@
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.EditorCoroutines.Editor">
+        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.MemoryProfiler">
+        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.MemoryProfiler.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
         <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -643,6 +650,9 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.MemoryProfiler.Editor">
+        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.MemoryProfiler.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

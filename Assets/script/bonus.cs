@@ -15,7 +15,7 @@ public class bonus : MonoBehaviour
     }
        void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag=="Player"){
+        if(other.gameObject.CompareTag("Player")){
             scr.finalPoint=scr.finalPoint<rate*scr.scorePoint?rate*scr.scorePoint:scr.finalPoint;
             Destroy(this);
         }

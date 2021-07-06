@@ -34,7 +34,7 @@ public class enemyAI : MonoBehaviour
     void Start()
     {
         thisbody=this.GetComponent<enemy>();
-        ani=this.transform.GetChild (0).gameObject.GetComponent<Animator>();
+        //ani=this.transform.GetChild (0).gameObject.GetComponent<Animator>();
         goal=GameObject.FindWithTag("goal").transform;
         nav = GetComponent<NavMeshAgent>();
         var method1 = typeof(PathCreator).GetMethods();
@@ -125,7 +125,7 @@ public class enemyAI : MonoBehaviour
                     giaodiem = goal.transform.position;
                 }
                 giaodiem.y=-4.4f;
-                Debug.DrawLine(thisbody.transform.position,giaodiem);
+                //Debug.DrawLine(thisbody.transform.position,giaodiem);
                 giaodiem = map.path.GetClosestPointOnPath(giaodiem);
                 //if((Vector3.Distance(thisbody.transform.position,goal.transform.position))<(Vector3.Distance(goal.transform.position,giaodiem)))
                 //    return 1;
@@ -147,13 +147,13 @@ public class enemyAI : MonoBehaviour
                 Collider[] targetInside = Physics.OverlapSphere (transform.position, 8);
                 if(targetInside.Length>0){
                     foreach(var target in targetInside){//random
-                        if(target.gameObject.tag=="brick" && (rand<prority[1] || Vector3.Distance(transform.position,target.transform.position)<2 )){
+                        if(target.gameObject.CompareTag("brick") && (rand<prority[1] || Vector3.Distance(transform.position,target.transform.position)<2 )){
                             nav.destination=target.transform.position;
                             state = State.picking;
-                            Debug.Log("nhat do");
+                            //Debug.Log("nhat do");
                         }
-                        if(target.gameObject.tag=="Player")
-                            if((thisbody.brickCount>1) && (thisbody.canKill) && (target.gameObject.GetComponent<player>().brickCount>2) && (rand < (target.gameObject.GetComponent<player>().brickCount-thisbody.brickCount)*0.03f))
+                        if(target.gameObject.CompareTag("Player"))
+                            if((thisbody.brickCount>1) && (thisbody.canKill) && (target.gameObject.GetComponent<player>().brickCount>2) && (rand < (target.gameObject.GetComponent<player>().brickCount-thisbody.brickCount)*0.01f))
                                 {
                                     Vector3 direct =(target.transform.position -thisbody.transform.position)/Vector3.Distance(target.transform.position,thisbody.transform.position);
                                     float rotateAngle= Vector3.SignedAngle(direct, Vector3.forward, Vector3.down);
@@ -192,10 +192,9 @@ public class enemyAI : MonoBehaviour
                 thisbody.kill2();
                 ani.SetBool("isrunning",false);
                 ani.SetBool("isKilling",true);
-                
                 tmp=true;
             }
-        if(tmp && (!thisbody.isKilling) ){
+        if(tmp ){//&& (!thisbody.isKilling) ){
             nav.enabled=true;
             state=lastState;
             tmp = false;
@@ -217,10 +216,10 @@ public class enemyAI : MonoBehaviour
             //Debug.Log(targetPick.Length);
             if(targetPick.Count>0){
                 foreach(var target in targetPick.ToList()){//random
-                    if(target.gameObject.tag=="brick"){
+                    if(target.gameObject.CompareTag("brick")){
                         nav.destination=target.transform.position;
                         targetPick.Remove(target);
-                        Debug.Log("nhat do");
+                        //Debug.Log("nhat do");
                     }else
                     {
                         targetPick.Remove(target);
@@ -242,9 +241,10 @@ public class enemyAI : MonoBehaviour
 
         nav.enabled=false;
         thisbody.move(destination);
-        Debug.DrawLine(transform.position, destination);
+        //Debug.DrawLine(transform.position, destination);
         //Debug.Log(Vector3.Distance(destination,thisbody.transform.position));
         if(Vector3.Distance(destination,thisbody.transform.position)<2f){
+        //if(map.path.GetClosestDistanceAlongPath(destination) < map.path.GetClosestDistanceAlongPath(thisbody.transform.position)){
             nav.enabled=true;
             state = State.running;
         }

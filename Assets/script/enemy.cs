@@ -21,7 +21,7 @@ public class enemy : player
         foreach(var x in fov.visibleTargets)
                     if(x!=null) {
                     // Debug.Log(x.tag);
-                        if( (x.tag == "Player") && (!x.GetComponent<player>().isHit) && (canKill) && (brickCount>1)&& (x.GetComponent<player>().brickCount>2) ){// && (rand < (x.GetComponent<player>().brickCount-brickCount)*0.005f)){
+                        if( (x.CompareTag("Player") ) && (!x.GetComponent<player>().isHit) && (canKill) && (brickCount>1)&& (x.GetComponent<player>().brickCount>2) ){// && (rand < (x.GetComponent<player>().brickCount-brickCount)*0.005f)){
                             x.gameObject.GetComponent<player>().isHit=true;
                             isKilling=true;
                             canKill=false;
@@ -37,7 +37,7 @@ public class enemy : player
         //direction.y=0;
         Vector3 direction = Vector3.Normalize(dest - transform.position);
         direction.y=0;
-        transform.position+=direction*speed;
+        transform.position+=direction * speed * Time.deltaTime;
         //rb.MovePosition(rb.position+direction*speed);//Debug.Log(rb.position);
         float rotateAngle= Vector3.SignedAngle(direction, Vector3.forward, Vector3.down);
         transform.eulerAngles  =new Vector3(0,rotateAngle,0);

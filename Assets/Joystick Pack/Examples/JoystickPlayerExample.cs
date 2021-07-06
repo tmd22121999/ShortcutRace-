@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JoystickPlayerExample : MonoBehaviour
 {
-    public float speed,rcy;
+    public float speed;
     public FloatingJoystick FloatingJoystick;
     public Rigidbody rb;
     public player thisplayer;
@@ -21,19 +21,16 @@ public class JoystickPlayerExample : MonoBehaviour
         direction = Vector3.forward * FloatingJoystick.Vertical + Vector3.right * FloatingJoystick.Horizontal;
         if(direction.magnitude>0.1f){
             ani.SetBool("isrunning",true);
+            direction = Vector3.Normalize(direction);
             //rb.AddForce(direction * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-            rb.MovePosition(rb.position+direction*speed);
+            thisplayer.transform.position+=direction * speed * Time.fixedDeltaTime;
+            //Debug.Log(direction);
             float rotateAngle= Vector3.SignedAngle(direction, Vector3.forward, Vector3.down);
             transform.eulerAngles  =new Vector3(0,rotateAngle,0);
         }else
         {
             ani.SetBool("isrunning",false);
         }
-        RaycastHit hit;
-        Vector3 dir=new Vector3(0,rcy,0);
-        dir+=transform.forward;
-         if (Physics.Raycast(transform.position,dir, out hit, 100)){
-            
-        }
+        
     }
 }
