@@ -38,7 +38,7 @@ public class enemyAI : MonoBehaviour
         goal=GameObject.FindWithTag("goal").transform;
         nav = GetComponent<NavMeshAgent>();
         var method1 = typeof(PathCreator).GetMethods();
-        map = GameObject.FindWithTag("ground").GetComponent<PathCreator>();
+        map = GameObject.FindWithTag("map").GetComponent<PathCreator>();
         leng = map.path.localPoints.Length;
         remainTime=5;
     }
@@ -110,7 +110,7 @@ public class enemyAI : MonoBehaviour
             else
                 p=0;
             //Debug.Log(p);
-            prority=new float[]{thisbody.brickCount*0.2f,(20f-thisbody.brickCount)*0.03f-p,0};
+            prority=new float[]{thisbody.brickCount*0.2f,(22f-thisbody.brickCount)*0.04f-p,0};
             float rand = Random.value;
             
 
@@ -124,7 +124,7 @@ public class enemyAI : MonoBehaviour
                 {
                     giaodiem = goal.transform.position;
                 }
-                giaodiem.y=-4.4f;
+                giaodiem.y=this.transform.position.y;
                 //Debug.DrawLine(thisbody.transform.position,giaodiem);
                 giaodiem = map.path.GetClosestPointOnPath(giaodiem);
                 //if((Vector3.Distance(thisbody.transform.position,goal.transform.position))<(Vector3.Distance(goal.transform.position,giaodiem)))
@@ -144,7 +144,7 @@ public class enemyAI : MonoBehaviour
         
           //đi theo gahcj hoặc player nếu trong tầm
             {
-                Collider[] targetInside = Physics.OverlapSphere (transform.position, 8);
+                Collider[] targetInside = Physics.OverlapSphere (transform.position, 10);
                 if(targetInside.Length>0){
                     foreach(var target in targetInside){//random
                         if(target.gameObject.CompareTag("brick") && (rand<prority[1] || Vector3.Distance(transform.position,target.transform.position)<2 )){
@@ -152,14 +152,15 @@ public class enemyAI : MonoBehaviour
                             state = State.picking;
                             //Debug.Log("nhat do");
                         }
-                        if(target.gameObject.CompareTag("Player"))
-                            if((thisbody.brickCount>1) && (thisbody.canKill) && (target.gameObject.GetComponent<player>().brickCount>2) && (rand < (target.gameObject.GetComponent<player>().brickCount-thisbody.brickCount)*0.01f))
+                        if((target.gameObject.CompareTag("Player")) || (target.gameObject.CompareTag("other")) )
+                            if((thisbody.brickCount>1) && (thisbody.canKill) && (target.gameObject.GetComponent<player>().brickCount>2) && (rand < Mathf.Min((target.gameObject.GetComponent<player>().brickCount-thisbody.brickCount)*0.02f, 0.8f)))
                                 {
-                                    Vector3 direct =(target.transform.position -thisbody.transform.position)/Vector3.Distance(target.transform.position,thisbody.transform.position);
+                                    Vector3 direct = Vector3.Normalize(target.transform.position -thisbody.transform.position);
                                     float rotateAngle= Vector3.SignedAngle(direct, Vector3.forward, Vector3.down);
                                     thisbody.transform.eulerAngles  = new Vector3(0,rotateAngle,0);
+                                    //Debug.Log(rotateAngle);
                                     nav.destination=target.transform.position;
-                                    nav.stoppingDistance=thisbody.fov.viewRadius-2;
+                                    nav.stoppingDistance=thisbody.fov.viewRadius-1;
                                     state=State.killing;
                                     break;
                                 }
@@ -204,7 +205,7 @@ public class enemyAI : MonoBehaviour
          if (!nav.pathPending && !nav.hasPath) 
             if(i==2){
                 i=0;
-                p=0.3f;
+                p=0.4f;
                 state = State.running;
             }
             if(i==0){

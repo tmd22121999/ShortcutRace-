@@ -628,8 +628,14 @@
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.EditorCoroutines.Editor">
+ <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.MemoryProfiler">
+ <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.MemoryProfiler.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -645,6 +651,9 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.MemoryProfiler.Editor">
+ <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.MemoryProfiler.Editor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

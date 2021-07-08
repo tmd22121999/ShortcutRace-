@@ -21,7 +21,7 @@ public class enemy : player
         foreach(var x in fov.visibleTargets)
                     if(x!=null) {
                     // Debug.Log(x.tag);
-                        if( (x.CompareTag("Player") ) && (!x.GetComponent<player>().isHit) && (canKill) && (brickCount>1)&& (x.GetComponent<player>().brickCount>2) ){// && (rand < (x.GetComponent<player>().brickCount-brickCount)*0.005f)){
+                        if( (x.CompareTag("Player") || x.CompareTag("other")) && (!x.GetComponent<player>().isHit) && (canKill) && (brickCount>1)&& (x.GetComponent<player>().brickCount>2) ){// && (rand < (x.GetComponent<player>().brickCount-brickCount)*0.005f)){
                             x.gameObject.GetComponent<player>().isHit=true;
                             isKilling=true;
                             canKill=false;

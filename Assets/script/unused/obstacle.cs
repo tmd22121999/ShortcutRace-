@@ -5,9 +5,9 @@ using UnityEngine;
 public class obstacle : MonoBehaviour
 {
     public int species;
-    public float maxRotation = 20,rotationSpeed;
+    public float maxRotation = 20,Speed;
     private float y=0.0f;
-
+    public GameObject door1,door2;
    
 
     // Update is called once per frame
@@ -16,17 +16,27 @@ public class obstacle : MonoBehaviour
         switch (species)
         {
             case 1:
-                y += Time.deltaTime * rotationSpeed;
+                y += Time.deltaTime * Speed;
                 transform.localRotation = Quaternion.Euler(90, y, 0);
                 break;
             case 2:
                 if(y > maxRotation)
-                    rotationSpeed=-rotationSpeed;
+                    Speed=-Speed;
                 if(y < -maxRotation)
-                    rotationSpeed=-rotationSpeed;
-                y += Time.deltaTime * rotationSpeed;
+                    Speed=-Speed;
+                y += Time.deltaTime * Speed;
                 
                 transform.localRotation = Quaternion.Euler(y, 0, 0);
+                break;
+            case 3:
+                if(y > maxRotation-door2.transform.localScale.x)
+                    Speed=-Speed;
+                if(y < -maxRotation+door2.transform.localScale.x)
+                    Speed=-Speed;
+                y += Time.deltaTime * Speed;
+                
+                door1.transform.localPosition  =new Vector3(y+door1.transform.localScale.x,door1.transform.localPosition.y,door1.transform.localPosition.z);
+                door2.transform.localPosition  =new Vector3(-y-door2.transform.localScale.x,door2.transform.localPosition.y,door2.transform.localPosition.z);
                 break;
         }     
     }

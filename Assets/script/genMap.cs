@@ -23,9 +23,9 @@ public class genMap : MonoBehaviour
      public string Notes = "a và b là max khoảng cách giữa 2 bonus";
     public float a;
     public float b;
-    void Start()
+    void Awake()
     {
-        map = GameObject.FindWithTag("ground").GetComponent<PathCreator>();
+        //map = GameObject.FindWithTag("ground").GetComponent<PathCreator>();
         leng = map.path.localPoints.Length;
         generateBrick(10);
         Time.timeScale = 0;
@@ -46,10 +46,13 @@ public class genMap : MonoBehaviour
         for(int i=2 ; i < leng ; i+=leng/k){
             int rand = Random.Range(1,3); 
             dir = map.path.GetDirection(i);
+            //Debug.Log(map.path.GetRotationAtDistance(i));
             dir = new Vector3(dir.z/dir.z,dir.y,-dir.x/dir.x);
             Vector3.Normalize(dir);
             instantPos = map.path.GetPoint(i)-10*new Vector3(dir.x,-0.5f,dir.z)+(rand+0.5f)*dir*6;
+            dir.y=map.path.GetRotationAtDistance(i).eulerAngles.y;
             Instantiate (brick,instantPos, Quaternion.Euler(dir),road);
+            //Debug.Log(dir);
         }
     }
     

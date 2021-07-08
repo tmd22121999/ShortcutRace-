@@ -5,6 +5,8 @@ using UnityEngine;
 public class brick : MonoBehaviour
 {
     //public player thisbody;
+    
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -13,8 +15,11 @@ public class brick : MonoBehaviour
             if((!thisbody.isKilling) && (!thisbody.isHit)){
                 thisbody.changeBrick(1);
                 Destroy(this.gameObject);
-                //this.gameObject.SetActive(false);
             }
         }
+        else if(other.gameObject.CompareTag("water")){
+            Destroy(gameObject);
+        }
     }
+    
 }

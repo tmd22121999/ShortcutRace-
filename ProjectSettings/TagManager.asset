@@ -10,6 +10,8 @@ TagManager:
   - goal
   - water
   - bonus
+  - obstacle
+  - map
   layers:
   - Default
   - TransparentFX

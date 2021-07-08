@@ -42,7 +42,7 @@ public class player : MonoBehaviour
         }else{
             
             if(onWater==true){
-                if(Physics.BoxCast(transform.position+new Vector3(0,3,0), dat.transform.lossyScale/1.5f, new Vector3(0,-1,0), out RaycastHit hit2, transform.rotation, 4,~layerMask))
+                if(Physics.BoxCast(transform.position+new Vector3(0,3,0), dat.transform.lossyScale/1.5f, new Vector3(0,-1,0), out RaycastHit hit2, transform.rotation, 4,~layerMask)){
                     if(hit2.transform.gameObject.CompareTag("water")){
                         if(brickCount>2){
                             //đặt gạch để đi trên nước
@@ -54,11 +54,12 @@ public class player : MonoBehaviour
                     else if(brickCount<3){
                     //nhay them 1 doan ngan, neu cham duong thi song ko thì thua
                         Vector3 direction = transform.forward;
-                        direction+=new Vector3(0,-0.3f,0);
+                        direction+=new Vector3(0,-0.4f,0);
                         //Debug.Log(direction);
                         Debug.DrawRay(transform.position+new Vector3(0,1,0),direction);
                         RaycastHit hit;
                         if (Physics.Raycast(transform.position+new Vector3(0,1,0),direction, out hit, 130)){
+                            
                             if( (hit.transform.gameObject.CompareTag("ground")) || (hit.transform.gameObject.CompareTag("bonus"))){
                                 onWater=false;
                                 transform.position=hit.point;
@@ -72,6 +73,7 @@ public class player : MonoBehaviour
                             dead();
                         }
                     }
+                } 
                 }
             }
                 //destroy
@@ -136,10 +138,12 @@ public class player : MonoBehaviour
     }
     public virtual void dead(){
         if(passGoal){
+            pmove.ani.SetInteger("end",1);
             int rank = GameObject.FindWithTag("goal").GetComponent<goal>().rank;
             float score = gameObject.GetComponent<score>().finalPoint;
             gameController.GameOver(rank,score);
         }else{
+            pmove.ani.SetInteger("end",-1);
             gameController.GameOver(0,0);
         }
     }
@@ -158,5 +162,14 @@ public class player : MonoBehaviour
         
     }
     
-
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.CompareTag("obstacle")){
+             this.gameObject.GetComponent<Rigidbody>().constraints &= ~(RigidbodyConstraints.FreezePositionX|RigidbodyConstraints.FreezePositionZ);
+        }
+    }
+    private void OnCollisionExit(Collision other) {
+        if(other.gameObject.CompareTag("obstacle")){
+             this.gameObject.GetComponent<Rigidbody>().constraints |= (RigidbodyConstraints.FreezePositionX|RigidbodyConstraints.FreezePositionZ);
+        }
+    }
 }

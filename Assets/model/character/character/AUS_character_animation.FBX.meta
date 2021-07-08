@@ -20,7 +20,7 @@ ModelImporter:
     second: Take 001 (4)
   - first:
       74: 3672910778998720083
-    second: Take 001 (5)
+    second: winner
   - first:
       74: -5252816984213320552
     second: idle
@@ -30,6 +30,9 @@ ModelImporter:
   - first:
       74: -6239216113759591374
     second: attack
+  - first:
+      74: 8143362691564993494
+    second: loser
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -175,7 +178,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Take 001 (4)
+      name: loser
       takeName: Take 001
       internalID: 0
       firstFrame: 151
@@ -204,7 +207,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Take 001 (5)
+      name: winner
       takeName: Take 001
       internalID: 0
       firstFrame: 281
@@ -282,7 +285,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 1

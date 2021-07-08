@@ -32,7 +32,7 @@ GameObject:
   - component: {fileID: 6367649854315488371}
   m_Layer: 0
   m_Name: Qua_lac_model (1)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,7 +183,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 409941da135c6164e8978b04bc50e177,
         type: 3}
       propertyPath: m_Name
-      value: qua_lac (1)
+      value: qua_lac (1) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 409941da135c6164e8978b04bc50e177,
+        type: 3}
+      propertyPath: m_TagString
+      value: obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 409941da135c6164e8978b04bc50e177, type: 3}

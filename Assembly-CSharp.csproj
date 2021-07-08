@@ -72,6 +72,7 @@
      <Compile Include="Assets\script\unused\obstacle.cs" />
      <Compile Include="Assets\script\unused\pathfinding.cs" />
      <Compile Include="Assets\script\unused\randColor.cs" />
+     <Compile Include="Assets\script\unused\respawn.cs" />
      <Compile Include="Assets\script\unused\water.cs" />
      <Compile Include="Assets\script\water2.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
