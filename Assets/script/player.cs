@@ -140,11 +140,10 @@ public class player : MonoBehaviour
         if(passGoal){
             pmove.ani.SetInteger("end",1);
             int rank = GameObject.FindWithTag("goal").GetComponent<goal>().rank;
-            float score = gameObject.GetComponent<score>().finalPoint;
-            gameController.GameOver(rank,score);
+            gameController.endGame(rank);
         }else{
             pmove.ani.SetInteger("end",-1);
-            gameController.GameOver(0,0);
+            gameController.GameOver();
         }
     }
     public virtual IEnumerator  ishit(){

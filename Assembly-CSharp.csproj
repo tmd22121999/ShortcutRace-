@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{b6ac53a1-b8e5-1024-41a4-a511fbad4edf}</ProjectGuid>
+    <ProjectGuid>{fee344cb-0e1e-9dfe-86de-7e11b10b2a06}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -620,49 +620,49 @@
         <HintPath>F:/unity/editor/2019.4.27f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.MemoryProfiler">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.MemoryProfiler.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/Unity.MemoryProfiler.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.MemoryProfiler.Editor">
-        <HintPath>F:/work/code/New folder/ShortcutRace-/Library/ScriptAssemblies/Unity.MemoryProfiler.Editor.dll</HintPath>
+        <HintPath>F:/work/test/clone/ShortcutRace/Library/ScriptAssemblies/Unity.MemoryProfiler.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PathCreator.csproj">
-      <Project>{bcea15b0-5232-7bd5-15b2-abb9e6d36ef6}</Project>
+      <Project>{b444dfe2-fd75-bec3-2f4d-85a359f5ccf7}</Project>
       <Name>PathCreator</Name>
     </ProjectReference>
     <ProjectReference Include="PathCreatorEditor2.csproj">
-      <Project>{25216aca-53d8-b38d-3826-b04f6b2ee0ee}</Project>
+      <Project>{340a3fc3-2090-b3d1-a463-bc0a37cfb1e4}</Project>
       <Name>PathCreatorEditor2</Name>
     </ProjectReference>
   </ItemGroup>
